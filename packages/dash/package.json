@@ -1,0 +1,16 @@
+{
+  "name": "dash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "gatsby": "^2.0.111",
+    "gatsby-theme-dashbored": "*",
+    "node-fetch": "^2.3.0",
+    "sqlite3": "^4.0.6"
+  }
+}
