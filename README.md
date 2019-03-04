@@ -330,6 +330,16 @@ This the properties for each widget that use `shortLabel`:
 - line: `axisBottom`
 - scatter: `axisBottom`
 
+## Caveats
+
+### Dev Mode watch
+
+Right now the dev mode of gatsby doesn't rebuild when your changing your query file. In the future we'll try to create a gatsby plugin to add the file in the watchlist.
+
+### Nivo labels
+
+Gatsby-config doesn't pass function to the templates(the reason is because the config is stringified). For dashbored, it means you won't be able to pass function for the label's format of your widget. tooltips, legends, ...
+
 ## Running the Examples
 
 ---
