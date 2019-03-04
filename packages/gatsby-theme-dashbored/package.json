@@ -13,6 +13,7 @@
     "@nivo/bar": "^0.52.1",
     "@nivo/line": "^0.52.1",
     "@nivo/pie": "^0.52.1",
+    "@nivo/scatterplot": "^0.52.1",
     "dayjs": "^1.8.8",
     "gatsby-plugin-typography": "^2.2.7",
     "graphql": "^14.1.1",

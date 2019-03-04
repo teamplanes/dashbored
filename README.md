@@ -185,6 +185,7 @@ There is for now 4 type of widgets:
 - Pie chart
 - Bar chart
 - Line chart
+- Scatter Plot
 
 #### Mandatory fields
 
@@ -197,7 +198,7 @@ Every widget object should contains this fields:
 
 **type**
 
-- type: ["number", "pie", "bar", "line"]
+- type: ["number", "pie", "bar", "line", "scatter"]
 - description: Type of the widget
 
 **query**
@@ -228,11 +229,7 @@ structure of the data expected:
 ]
 ```
 
-**pie**
-
-- options:
-  - shortLabel: number: Show a substring of the label when necessary
-  - nivoConfig: extend the nivo configuration [doc](https://nivo.rocks/pie)
+**pie** [doc](https://nivo.rocks/pie)
 
 structure of the data expected:
 
@@ -246,11 +243,7 @@ structure of the data expected:
 ]
 ```
 
-**bar**
-
-- options:
-  - shortLabel: number: Show a substring of the label when necessary
-  - nivoConfig: extend the nivo configuration [doc](https://nivo.rocks/bar)
+**bar** [doc](https://nivo.rocks/bar)
 
 structure of the data expected:
 
@@ -264,11 +257,7 @@ structure of the data expected:
 ]
 ```
 
-**line**
-
-- options:
-  - shortLabel: number: Show a substring of the label when necessary
-  - nivoConfig: object: extend the nivo configuration [doc](https://nivo.rocks/line)
+**line** [doc](https://nivo.rocks/line)
 
 structure of the data expected:
 
@@ -276,11 +265,70 @@ structure of the data expected:
 ;[
   {
     id: string | number,
-    label: string | number,
-    value: number,
+    data: [{ x: number | string | Date, y: number | string | Date }],
   },
 ]
 ```
+
+**scatter** [doc](https://nivo.rocks/scatterplot)
+
+structure of the data expected:
+
+```js
+;[
+  {
+    id: string | number,
+    data: [{ x: number | string | Date, y: number | string | Date }],
+  },
+]
+```
+
+**Generic options**
+
+**nivoConfig**
+
+allow you to change the default nivo config use for each nivo component (every component except `number`)
+
+**column**
+
+Allow you to change the number of column used by the widget. The dashbored is made of 6 columns.
+This is the default column for each widget:
+
+- number: 1
+- pie: 4
+- bar: 6
+- line : 6
+- scatter : 6
+
+**row**
+
+Allow you to change the number of rows used by the widget. The dashbored created as many row as it needs. a row is `225px`.
+This is the default column for each widget:
+
+- number: 1
+- pie: 2
+- bar: 2
+- line : 2
+- scatter : 2
+
+**shortLabel**
+
+Allow to show a shorter version of your label.
+
+```js
+{
+  shortLabel: 4 // will substring your label to the first 4 characters.
+}
+```
+
+If you overwrite the nivoConfig, this property might have no effect.
+This the properties for each widget that use `shortLabel`:
+
+- number: none
+- pie: `radialLabel`
+- bar: `axisBottom`
+- line: `axisBottom`
+- scatter: `axisBottom`
 
 ## Running the Examples
 

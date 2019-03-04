@@ -91,7 +91,7 @@ const Bar = ({ name, result, ...rest }) => {
     ...rest.nivoConfig,
   }
   return (
-    <Block c={6} r={2} ps="stretch">
+    <Block c={rest.column || 6} r={rest.row || 2} ps="stretch">
       <Label>{name}</Label>
       <ResponsiveBar {...props} />
     </Block>

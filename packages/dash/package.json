@@ -10,6 +10,7 @@
   "dependencies": {
     "gatsby": "^2.0.111",
     "gatsby-theme-dashbored": "*",
+    "lodash": "^4.17.11",
     "node-fetch": "^2.3.0",
     "sqlite3": "^4.0.6"
   }

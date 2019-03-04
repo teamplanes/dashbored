@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'The Knowledge of the Beers',
+    title: 'The Forgotten Knowledge',
     author: 'Planes',
-    description: 'A Dashbored of beers',
+    description: 'A Dashbored of knowledge',
   },
   __experimentalThemes: [
     {

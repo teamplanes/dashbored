@@ -28,8 +28,7 @@ const Pie = ({ name, result, ...rest }) => {
     innerRadius: 0.5,
     padAngle: 0.5,
     cornerRadius: 2,
-    radialLabel: e =>
-      `${rest.shortLabel ? e.label.substring(0, rest.shortLabel) : e.label} (${e.value})`,
+    radialLabel: e => `${rest.shortLabel ? e.label.substring(0, rest.shortLabel) : e.label}`,
     enableSlicesLabels: false,
     colors: 'nivo',
     colorBy: 'label',
@@ -37,7 +36,7 @@ const Pie = ({ name, result, ...rest }) => {
     ...rest.nivoConfig,
   }
   return (
-    <Block c={4} r={2} ps="stretch">
+    <Block c={rest.column || 4} r={rest.row || 2} ps="stretch">
       <Label>{name}</Label>
       {result.length === 0 ? (
         <Container>

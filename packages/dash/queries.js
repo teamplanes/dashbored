@@ -1,51 +1,97 @@
+const _ = require('lodash/fp')
 const fetch = require('node-fetch')
+
+const earth = str =>
+  fetch(
+    `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-01-01&endtime=2018-12-31&${str}`,
+  ).then(res => res.json())
 
 module.exports = [
   {
-    title: 'Knowledge of the Beers',
+    title: 'Unicorns',
     default: true,
     queries: [
       {
-        name: 'Number of beers',
+        name: 'Number of unicorns',
         type: 'number',
-        query: () =>
-          fetch('https://api.punkapi.com/v2/beers')
-            .then(res => res.json())
-            .then(json => json.length)
-            .then(l => ({ value: l })),
+        query: () => [{ value: 42 }],
       },
       {
-        name: 'Average abv of beers',
+        name: 'Number of species',
         type: 'number',
-        query: () =>
-          fetch('https://api.punkapi.com/v2/beers')
-            .then(res => res.json())
-            .then(json => json.reduce((acc, beer) => acc + beer.abv, 0) / json.length)
-            .then(l => ({ value: parseFloat(l.toFixed(2)) })),
+        query: () => [{ value: 5 }],
       },
       {
-        name: 'Malts in all beers',
+        name: 'Species of unicorns',
         type: 'pie',
-        nivoConfig: {
-          enableRadialLabels: false,
-        },
-        query: () =>
-          fetch('https://api.punkapi.com/v2/beers')
-            .then(res => res.json())
-            .then(json =>
-              json.reduce((acc, beer) => {
-                const malts = beer.ingredients.malt.map(m => m.name)
-                return malts.reduce((ms, m) => ({ ...ms, [m]: ms[m] ? ms[m] + 1 : 1 }), acc)
-              }, {}),
-            )
-            .then(malts => Object.keys(malts).map(k => ({ id: k, label: k, value: malts[k] }))),
+        query: () => [
+          { id: 'gingercorn', label: 'Gingercorn', value: 1 },
+          { id: 'blondecorn', label: 'Blondecorn', value: 1 },
+          { id: 'invisiblecorn', label: 'Invisiblecorn', value: 1 },
+          { id: 'flycorn', label: 'Flycorn', value: 1 },
+          { id: 'popcorn', label: 'Popcorn', value: 1 },
+        ],
       },
       {
-        name: 'Not so relevant data line chart on beers',
-        type: 'line',
-        shortLabel: 5,
+        name: 'Number of unicorns in the world',
+        type: 'number',
+        column: 2,
+        query: () => [{ value: 42 }],
+      },
+      {
+        name: 'Average lifespan of each species',
+        type: 'bar',
+        column: 3,
         nivoConfig: {
-          curve: 'linear',
+          margin: {
+            top: 50,
+            right: 10,
+            bottom: 60,
+            left: 60,
+          },
+          axisBottom: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Species',
+            legendPosition: 'middle',
+            legendOffset: 40,
+          },
+          axisLeft: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'lifespan',
+            legendPosition: 'middle',
+            legendOffset: -40,
+          },
+        },
+        query: () => [
+          { index: 'Gingercorn', value: 100 },
+          { index: 'Blondecorn', value: 63 },
+          { index: 'Invisiblecorn', value: 13 },
+          { index: 'Flycorn', value: 45.5 },
+          { index: 'Popcorn', value: 42 },
+        ],
+      },
+      {
+        name: '% of territory by species',
+        type: 'pie',
+        column: 3,
+        nivoConfig: { innerRadius: 0 },
+        query: () => [
+          { id: 'gingercorn', label: 'Gingercorn', value: 23 },
+          { id: 'blondecorn', label: 'Blondecorn', value: 13 },
+          { id: 'invisiblecorn', label: 'Invisiblecorn', value: 2 },
+          { id: 'flycorn', label: 'Flycorn', value: 20 },
+          { id: 'popcorn', label: 'Popcorn', value: 42 },
+        ],
+      },
+      {
+        name: 'average population by species over the month',
+        type: 'line',
+        nivoConfig: {
+          curve: 'natural',
           yScale: {
             type: 'linear',
             stacked: false,
@@ -56,7 +102,23 @@ module.exports = [
             top: 50,
             right: 110,
             bottom: 60,
-            left: 90,
+            left: 60,
+          },
+          axisBottom: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Days',
+            legendPosition: 'middle',
+            legendOffset: 40,
+          },
+          axisLeft: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Population',
+            legendPosition: 'middle',
+            legendOffset: -40,
           },
           legends: [
             {
@@ -86,76 +148,283 @@ module.exports = [
         },
         query: [
           [
-            'ABV',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json => json.map(beer => ({ y: beer.abv || 0, x: beer.name }))),
+            'Gingercorn',
+            () => [
+              { x: '2019-12-01', y: '12' },
+              { x: '2019-12-06', y: '23' },
+              { x: '2019-12-12', y: '76' },
+              { x: '2019-12-18', y: '62' },
+              { x: '2019-12-24', y: '22' },
+              { x: '2019-12-30', y: '42' },
+            ],
           ],
           [
-            'IBU',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json => json.map(beer => ({ y: beer.ibu || 0, x: beer.name }))),
+            'Blondecorn',
+            () => [
+              { x: '2019-12-01', y: '4' },
+              { x: '2019-12-06', y: '2' },
+              { x: '2019-12-12', y: '12' },
+              { x: '2019-12-18', y: '54' },
+              { x: '2019-12-24', y: '90' },
+              { x: '2019-12-30', y: '42' },
+            ],
           ],
           [
-            'SRM',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json => json.map(beer => ({ y: beer.srm || 0, x: beer.name }))),
+            'Invisiblecorn',
+            () => [
+              { x: '2019-12-01', y: '45' },
+              { x: '2019-12-06', y: '65' },
+              { x: '2019-12-12', y: '32' },
+              { x: '2019-12-18', y: '23' },
+              { x: '2019-12-24', y: '67' },
+              { x: '2019-12-30', y: '42' },
+            ],
           ],
           [
-            'EBC',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json => json.map(beer => ({ y: beer.ebc || 0, x: beer.name }))),
+            'Flycorn',
+            () => [
+              { x: '2019-12-01', y: '4' },
+              { x: '2019-12-06', y: '7' },
+              { x: '2019-12-12', y: '52' },
+              { x: '2019-12-18', y: '22' },
+              { x: '2019-12-24', y: '22' },
+              { x: '2019-12-30', y: '42' },
+            ],
           ],
           [
-            'PH',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json => json.map(beer => ({ y: beer.ph || 0, x: beer.name }))),
-          ],
-          [
-            'Attenuation level',
-            () =>
-              fetch('https://api.punkapi.com/v2/beers')
-                .then(res => res.json())
-                .then(json =>
-                  json.map(beer => ({
-                    y: beer.attenuation_level || 0,
-                    x: beer.name,
-                  })),
-                ),
+            'Popcorn',
+            () => [
+              { x: '2019-12-01', y: '42' },
+              { x: '2019-12-06', y: '42' },
+              { x: '2019-12-12', y: '42' },
+              { x: '2019-12-18', y: '42' },
+              { x: '2019-12-24', y: '42' },
+              { x: '2019-12-30', y: '42' },
+            ],
           ],
         ],
       },
       {
-        name: 'ABV for beers',
+        name: 'Number of unicorns by month',
         type: 'bar',
-        shortLabel: 5,
         nivoConfig: {
           margin: {
             top: 50,
             right: 10,
             bottom: 60,
-            left: 90,
+            left: 60,
+          },
+          axisBottom: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Month',
+            legendPosition: 'middle',
+            legendOffset: 40,
+          },
+          axisLeft: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Number of unicorns',
+            legendPosition: 'middle',
+            legendOffset: -40,
+          },
+        },
+        query: () => [
+          { index: 'January', value: 100 },
+          { index: 'February', value: 63 },
+          { index: 'March', value: 13 },
+          { index: 'April', value: 45 },
+          { index: 'May', value: 45 },
+          { index: 'June', value: 23 },
+          { index: 'July', value: 12 },
+          { index: 'August', value: 43 },
+          { index: 'September', value: 92 },
+          { index: 'October', value: 15 },
+          { index: 'November', value: 12 },
+          { index: 'December', value: 72 },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'EarthQuake in 2018',
+    queries: [
+      {
+        name: 'Nb of earthquakes of magnitude > 6',
+        type: 'number',
+        column: 2,
+        query: () =>
+          earth('minmagnitude=6').then(json => ({
+            value: json.features.length,
+          })),
+      },
+      {
+        name: 'Nb of earthquakes by magnitude',
+        type: 'bar',
+        column: 4,
+        row: 3,
+        nivoConfig: {
+          colors: 'set3',
+          margin: {
+            top: 50,
+            right: 10,
+            bottom: 60,
+            left: 60,
+          },
+          axisBottom: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Magnitudes',
+            legendPosition: 'middle',
+            legendOffset: 40,
+          },
+          axisLeft: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Nb of earthquakes',
+            legendPosition: 'middle',
+            legendOffset: -40,
           },
         },
         query: () =>
-          fetch('https://api.punkapi.com/v2/beers')
-            .then(res => res.json())
-            .then(json =>
-              json.map(b => ({
-                index: b.name,
-                label: b.name,
-                value: b.abv,
-              })),
-            ),
+          earth('minmagnitude=6').then(quakes =>
+            _.flowRight(
+              _.reduce.convert({ cap: false })((acc, v, k) => [...acc, { index: k, value: v }], []),
+              _.mapValues(v => v.length),
+              _.groupBy('properties.mag'),
+            )(quakes.features),
+          ),
+      },
+      {
+        name: 'Nb earthquakes by magnitude > 4',
+        type: 'pie',
+        column: 2,
+        nivoConfig: {
+          colors: 'set3',
+          innerRadius: 0.5,
+          enableSlicesLabels: true,
+          enableRadialLabels: false,
+          margin: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 90,
+          },
+          legends: [
+            {
+              anchor: 'right',
+              direction: 'column',
+              translateX: 80,
+              itemWidth: 60,
+              itemHeight: 24,
+              itemTextColor: '#999',
+              symbolSize: 18,
+              symbolShape: 'circle',
+              effects: [
+                {
+                  on: 'hover',
+                  style: {
+                    itemTextColor: '#000',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        query: () =>
+          earth('minmagnitude=4').then(quakes =>
+            _.flowRight(
+              _.filter(v => v.value > 500),
+              _.reduce.convert({ cap: false })(
+                (acc, v, k) => [...acc, { id: k, label: k, value: v }],
+                [],
+              ),
+              _.mapValues(v => v.length),
+              _.groupBy('properties.mag'),
+            )(quakes.features),
+          ),
+      },
+      {
+        name: 'Earthquakes in time',
+        type: 'scatter',
+        nivoConfig: {
+          colors: 'greys',
+          margin: {
+            top: 50,
+            right: 100,
+            bottom: 60,
+            left: 60,
+          },
+          yScale: {
+            type: 'linear',
+            min: 5.5,
+            max: 'auto',
+          },
+          xScale: {
+            type: 'time',
+            format: '%m/%d/%Y',
+            precision: 'day',
+          },
+          axisBottom: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Dates',
+            legendPosition: 'middle',
+            legendOffset: 40,
+            format: '%Y-%m-%d',
+          },
+          axisLeft: {
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Magnitudes',
+            legendPosition: 'middle',
+            legendOffset: -40,
+          },
+          legends: [
+            {
+              anchor: 'bottom-right',
+              direction: 'column',
+              translateX: 130,
+              itemWidth: 100,
+              itemHeight: 12,
+              itemsSpacing: 5,
+              itemTextColor: '#999',
+              symbolSize: 12,
+              symbolShape: 'circle',
+              effects: [
+                {
+                  on: 'hover',
+                  style: {
+                    itemTextColor: '#000',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        query: () =>
+          earth('minmagnitude=6').then(quakes =>
+            _.flowRight(
+              _.reduce.convert({ cap: false })((acc, v, k) => [...acc, { id: k, data: v }], []),
+              _.mapValues(
+                _.map(e => ({
+                  x: new Date(_.get('properties.time', e)).toLocaleDateString('en', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  }),
+                  y: _.get('properties.mag', e),
+                })),
+              ),
+              _.groupBy('properties.title'),
+            )(quakes.features),
+          ),
       },
     ],
   },

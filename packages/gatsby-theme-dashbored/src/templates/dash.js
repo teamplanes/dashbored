@@ -9,6 +9,7 @@ import Number from '../components/number'
 import Pie from '../components/pie'
 import Bar from '../components/bar'
 import Line from '../components/line'
+import Scatter from '../components/scatter'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -35,6 +36,8 @@ const createDashboard = pageResult => {
             return <Pie key={`pie_${Math.random()}`} {...rest} />
           case 'line':
             return <Line key={`line_${Math.random()}`} {...rest} />
+          case 'scatter':
+            return <Scatter key={`line_${Math.random()}`} {...rest} />
           case 'bar':
             return <Bar key={`bar_${Math.random()}`} {...rest} />
           default:

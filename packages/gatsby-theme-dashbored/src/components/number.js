@@ -16,8 +16,8 @@ const Value = styled.span`
   line-height: 80px;
 `
 
-const Number = ({ result, name }) => (
-  <Block c={1} r={1} ps="start">
+const Number = ({ result, name, ...rest }) => (
+  <Block c={rest.column || 1} r={rest.row || 1} ps="start">
     <Container>
       <Value>{(isArray(result) ? result[0].value : result.value) || 0}</Value>
       <Label>{name}</Label>

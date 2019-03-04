@@ -47,7 +47,7 @@ exports.createPages = ({ actions: { createPage } }, config) => {
 
   const createPP = pages => {
     pages.map(({ queries, ...page }) => {
-      const uri = page.default ? '/' : `/${page.title.toLowerCase().replace(' ', '-')}`
+      const uri = page.default ? '/' : `/${page.title.toLowerCase().replace(/\s/gim, '-')}`
       Promise.all(queries).then(result => {
         createPage({
           path: uri,

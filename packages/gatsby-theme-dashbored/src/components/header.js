@@ -41,6 +41,9 @@ const Header = props => (
           edges {
             node {
               path
+              context {
+                title
+              }
               pluginCreator {
                 name
               }
@@ -63,11 +66,11 @@ const Header = props => (
                       style={{ color: 'hsla(0,0%,0%,0.8)', backgroundImage: 'none' }}
                       activeStyle={{ color: 'rgb(2, 202, 177)' }}
                     >
-                      {node.path === '/' ? 'home' : node.path.replace('-', ' ').replace('/', '')}
+                      {node.context.title}
                     </Link>
                   </Item>
                 )),
-                filter(({ node }) => node.pluginCreator.name === 'gatsby-theme-dash'),
+                filter(({ node }) => node.pluginCreator.name === 'gatsby-theme-dashbored'),
               )(data.allSitePage.edges)
             : null}
         </List>
