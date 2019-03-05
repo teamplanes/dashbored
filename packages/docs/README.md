@@ -193,7 +193,7 @@ There is for now 4 type of widgets:
 
 Every widget object should contains this fields:
 
-#### **name**
+####Â **name**
 
 - type: string
 - description: Name of the widget
@@ -486,7 +486,7 @@ module.exports = [
 
 ### **Generic options**
 
-#### **nivoConfig**
+####Â **nivoConfig**
 
 allow you to change the default nivo config use for each nivo component (every component except `number`)
 
