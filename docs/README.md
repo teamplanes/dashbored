@@ -131,7 +131,7 @@ This opens 2 way of querying data:
 
 ## Passing the data as a function
 
-If you are not using SQL databases or simple prefer to handle the connection on your end, you can simply pass the data as a function:
+If you are not using SQL databases or simply prefer to handle the connection on your end, you can pass the data as a function:
 
 ```js
 // queries.js
