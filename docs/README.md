@@ -1,27 +1,36 @@
-# Dashbored
+# Dashbored 😴
 
-[Demo](http://localhost:8000)
+Dashbored is a Gasby plugin that creates __boring__* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
 
-# Install
+__\* Static.__
 
-If your creating your project you can use the gatsby cli or just create a project with yarn/npm:
+- Built on Gatsby, so use any other plugins
+- It's static, run `gatsby build` to refetch the data and build a new version of the `dashbored`, means its super fast.
+- Easily connect to your SQL database via Knex, or just call an API as your datasource.
+- Powerful and beautiful data visualisation using [Nivo](https://nivo.rocks/).
+- Building in configuration and simple queries means anyone who knows SQL can contribute to your `dashbored`.
+
+[View the demo](http://localhost:8000)
+
+## Install
+
+**For new projects** you can either use the [gatsby cli](https://www.gatsbyjs.org/packages/gatsby-cli/) or just initialise a new project with yarn/npm:
 
 ```shell
 yarn init -y
 yarn add gatsby gatsby-theme-dashbored
 ```
 
-If you already have a gatsby project, you can simply install dashbored theme:
+**For existing gatsby projects**, you can simply install the Gatsby `dashbored` theme:
 
 ```shell
 yarn add gatsby-theme-dashbored
 ```
 
-# Getting Started
+## Getting Started
 
----
-
-In your gatsby project, edit `gatsby-config.js` and add the dashbored's theme:
+#### Step 1.
+In your gatsby project, edit the `gatsby-config.js` and add the dashbored's theme:
 
 ```js
 // gatsby-config.js
@@ -36,7 +45,8 @@ In your gatsby project, edit `gatsby-config.js` and add the dashbored's theme:
 }
 ```
 
-Then create the file queries.js at the root of your project:
+#### Step 2.
+Then create the file `queries.js` at the root of your project:
 
 ```js
 // queries.js
@@ -61,14 +71,15 @@ module.exports = [
 ]
 ```
 
-Your first Dashbored is ready to go.
+__Your first Dashbored is ready to go!__
 
-you'll need to add `node-fetch` as a dependency in your project:
+__Note:__ For the above example to work you'll need to add `node-fetch` as a dependency in your project:
 
 ```shell
 yarn add node-fetch
 ```
 
+#### Step 3.
 Add the following script in your `package.json`:
 
 ```json
@@ -81,35 +92,33 @@ Add the following script in your `package.json`:
 }
 ```
 
+#### Step 4.
 Now you can launch your dashbored, enter the command below and it should be available at `http://localhost:8000`:
 
 ```shell
 yarn develop
 ```
 
-# Querying data
+## Querying data
 
----
+The example above is nice and easy but in the real world you'll probably want to run your queries on a Database. There are 2 options for that.
 
-The example above is nice and easy but you probably need to make request to a db somewhere.
-There is 2 options for that
+### SQL queries with knex
 
-## Using SQL query as string with knex
+If you are using an SQL based DB (PostgresSQL, MySQL, ...), you can connect by passing a [knexConfig](https://knexjs.org/#Installation-client) object into the theme's config.
 
-If you are using a SQL based DB (postgresSQL, MySQL, ...), you can pass the knexConfig in the config.
+This opens 2 ways of querying data:
 
-This opens 2 way of querying data:
+- You can simply pass a query as a simple string
+- You can pass a function that receives a knex instance as a parameter
 
-- you can simply pass a query as a simple string
-- you can use a function that receive the knex instance as a parameter
-
-### As a simple string
+#### As a simple string
 
 ```js
 // queries.js
 {
   [...],
-  quesries: [{
+  queries: [{
     name: 'Number of users',
     type: 'number',
     query: `SELECT COUNT(users.id) FROM users`
@@ -117,13 +126,13 @@ This opens 2 way of querying data:
 }
 ```
 
-### As a function
+#### As a function
 
 ```js
 // queries.js
 {
   [...],
-  quesries: [{
+  queries: [{
     name: 'Number of users',
     type: 'number',
     query: db => db('users').count('*')
@@ -131,15 +140,15 @@ This opens 2 way of querying data:
 }
 ```
 
-## Passing the data as a function
+### Passing the data as a function
 
-If you are not using SQL databases or simply prefer to handle the connection on your end, you can pass the data as a function:
+If you are not using an SQL database or simply prefer to handle the connection on your end, you can pass the data as a function:
 
 ```js
 // queries.js
 {
   [...],
-  quesries: [{
+  queries: [{
     name: 'Number of users',
     type: 'number',
     query: () => Users.count()
@@ -147,12 +156,11 @@ If you are not using SQL databases or simply prefer to handle the connection on 
 }
 ```
 
-# Shape of the queryfile
+## The shape of the queryfile
 
 ---
 
-Your query file should be a `js` file that export an array of objects.
-Each objects represent a page in your dashbored.
+Your query file should be a `js` file that exports an array of objects. Each object represents a page in your dashbored.
 
 ```js
 // queries.js
@@ -173,13 +181,11 @@ module.exports = [
 ]
 ```
 
-In the example above, `Page 1` will be your index/homepage (`/`).
+In the example above, `Page 1` will be your index/homepage (`/`). If multiple pages with `default: true` are present, the last one will overwrite the previous pages.
 
-If multiple pages with `default:true` are present, the last one will overwrite the previous pages.
+### `queries` field
 
-## `queries` field
-
-This field will contain all of your query for the page. It's an array of objects, each object being a widget.
+This field will contain all of the queries for the page. It's an array of objects, each object being a widget.
 
 There is for now 4 type of widgets:
 
@@ -193,7 +199,7 @@ There is for now 4 type of widgets:
 
 Every widget object should contains this fields:
 
-#### **name**
+#### **name**
 
 - type: string
 - description: Name of the widget
@@ -210,8 +216,9 @@ Every widget object should contains this fields:
   - db: knex instance
 - description: query/data of your widget
 
-The nivoConfig allow you to customize the library we are using for data visualization nivo, you can find a really well done doc on their [website](https://nivo.rocks/).
-Each type of widget has optional fields and expect a specific structure for your query data:
+The `nivoConfig` allows you to customize the library we are using for data visualization nivo, you can find their amazing docs on their [website](https://nivo.rocks/). 
+
+Each type of widget has optional fields and expects a specific structure for your query data:
 
 ## Widgets
 
@@ -256,7 +263,7 @@ module.exports = [
 
 [nivo doc](https://nivo.rocks/pie)
 
-structure of the data expected:
+Structure of the data expected:
 
 ```js
 const data = [
@@ -297,7 +304,7 @@ module.exports = [
 
 [nivo doc](https://nivo.rocks/bar)
 
-structure of the data expected:
+Structure of the data expected:
 
 ```js
 const data = [
@@ -338,7 +345,7 @@ module.exports = [
 
 [nivo doc](https://nivo.rocks/line)
 
-structure of the data expected:
+Structure of the data expected:
 
 ```js
 const data = [
@@ -349,8 +356,7 @@ const data = [
 ]
 ```
 
-In the case of Line and Scatter, you can pass the data with two different structures.
-You can directly send the correctly formatted data in one query or send multiple queries in Tuples([see line example below](/?id=example-3)). `[id: string, data: fn]`
+In the case of Line and Scatter, you can pass the data with two different structures. You can directly send the correctly formatted data in one query or send multiple queries in Tuples([see line example below](/?id=example-3)). `[id: string, data: fn]`
 
 If you send the array of Tuples, Dashbored will convert this into the expected data structure for you.
 
@@ -433,7 +439,7 @@ module.exports = [
 
 [nivo doc](https://nivo.rocks/scatterplot)
 
-structure of the data expected:
+Structure of the data expected:
 
 ```js
 const data = [
@@ -531,30 +537,27 @@ For each widget that use `shortLabel`, this is the property affecte by `shortLab
 - line: `axisBottom`
 - scatter: `axisBottom`
 
-# Caveats
+## Caveats
 
-## Dev Mode watch
+### Dev Mode watch
 
-Right now the dev mode of gatsby doesn't rebuild when your changing your query file. In the future we'll try to create a gatsby plugin to add the file in the watchlist.
+Right now the dev mode of gatsby doesn't rebuild when your changing your query file. In the future we'll try to create a Gatsby plugin to add the file in the watchlist.
 
-## Nivo labels
+### Nivo labels
 
-Gatsby-config doesn't pass function to the templates(the reason is because the config is stringified). For dashbored, it means you won't be able to pass function for the label's format of your widget. tooltips, legends, ...
+Gatsby-config doesn't pass function to the templates (the reason is because the config is stringified). For Dashbored, it means you won't be able to pass functions for the label's format of your widget. tooltips, legends, ...
 
-# Running the Examples
+## Running the Examples
 
----
+### Installation
 
-## Installation
-
-This repo uses yarn workspaces to handle dependencies, so run `yarn`
-at the root of the repo.
+This repo uses yarn workspaces to handle dependencies, so run `yarn` at the root of the repo.
 
 ```shell
 yarn
 ```
 
-## Run the example (`/packages/dash`)
+### Run the example (`/packages/dash`)
 
 To run scripts in a workspace, use the `yarn workspace` command.
 
