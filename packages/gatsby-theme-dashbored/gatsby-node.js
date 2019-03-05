@@ -21,7 +21,7 @@ const {
 
 require('node-fetch')
 
-exports.createPages = ({ actions: { createPage } }, config) => {
+exports.createPages = async ({ actions: { createPage } }, config) => {
   const queries = require(path.resolve(config.queryfile))
   const db = config.knexConfig ? knex(config.knexConfig) : null
 
@@ -45,20 +45,20 @@ exports.createPages = ({ actions: { createPage } }, config) => {
   }
   const fetchQueries = update('queries', map(fetchQuery))
 
-  const createPP = pages => {
+  const createPP = pages =>
     pages.map(({ queries, ...page }) => {
       const uri = page.default ? '/' : `/${page.title.toLowerCase().replace(/\s/gim, '-')}`
-      Promise.all(queries).then(result => {
-        createPage({
-          path: uri,
-          component: require.resolve(path.resolve(__dirname, `./src/templates/dash.js`)),
-          context: { ...page, uri, result },
-        })
+      return Promise.all(queries).then(result => {
+        return Promise.resolve(
+          createPage({
+            path: uri,
+            component: require.resolve(path.resolve(__dirname, `./src/templates/dash.js`)),
+            context: { ...page, uri, result },
+          }),
+        )
       })
     })
-  }
-  return flowRight(
-    createPP,
-    map(fetchQueries),
-  )(queries)
+  const pp = map(fetchQueries, queries)
+  console.log('return', pp)
+  return await createPP(pp)
 }

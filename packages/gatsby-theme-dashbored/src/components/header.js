@@ -66,11 +66,10 @@ const Header = props => (
                       style={{ color: 'hsla(0,0%,0%,0.8)', backgroundImage: 'none' }}
                       activeStyle={{ color: 'rgb(2, 202, 177)' }}
                     >
-                      {node.context.title}
+                      {node.context ? node.context.title : node.path}
                     </Link>
                   </Item>
                 )),
-                filter(({ node }) => node.pluginCreator.name === 'gatsby-theme-dashbored'),
               )(data.allSitePage.edges)
             : null}
         </List>
