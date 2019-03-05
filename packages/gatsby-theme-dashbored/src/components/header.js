@@ -4,7 +4,7 @@ import { map, filter, flowRight } from 'lodash/fp'
 import { StaticQuery, graphql, Link } from 'gatsby'
 
 const List = styled.ul`
-  list-styled: none;
+  list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
