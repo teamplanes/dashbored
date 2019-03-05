@@ -1,6 +1,7 @@
 # Dashbored
 
 [Demo](http://localhost:8000)
+
 [Documentation](/docs)
 
 # Running the Examples
