@@ -1,4 +1,6 @@
-# Dashbored ([Demo](http://localhost:8000))
+# Dashbored
+
+[Demo](http://localhost:8000)
 
 # Install
 
