@@ -70,6 +70,10 @@ const Header = props => (
                     </Link>
                   </Item>
                 )),
+                filter(
+                  p =>
+                    p.node.pluginCreator && p.node.pluginCreator.name === 'gatsby-theme-dashbored',
+                ),
               )(data.allSitePage.edges)
             : null}
         </List>

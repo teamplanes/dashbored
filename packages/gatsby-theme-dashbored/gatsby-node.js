@@ -58,7 +58,5 @@ exports.createPages = async ({ actions: { createPage } }, config) => {
         )
       })
     })
-  const pp = map(fetchQueries, queries)
-  console.log('return', pp)
-  return await createPP(pp)
+  return await Promise.all(createPP(map(fetchQueries, queries)))
 }
