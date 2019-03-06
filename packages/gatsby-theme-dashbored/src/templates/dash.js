@@ -36,7 +36,9 @@ const Dash = ({ pageContext: { result, title, uri } }) => {
   return (
     <React.Fragment>
       <Header title={title} />
-      <Grid>{createDashboard(result)}</Grid>
+      <Grid bk={{ mobile: 'auto-fill', tablet: 'auto-fit', desktop: 6 }}>
+        {createDashboard(result)}
+      </Grid>
     </React.Fragment>
   )
 }

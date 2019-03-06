@@ -17,7 +17,11 @@ const Value = styled.span`
 `
 
 const Number = ({ result, name, ...rest }) => (
-  <Block c={rest.column || 1} r={rest.row || 1} ps="start">
+  <Block
+    columns={rest.columns || { mobile: 1, tablet: 1, desktop: 1 }}
+    rows={rest.rows || { mobile: 1, tablet: 1, desktop: 1 }}
+    align="start"
+  >
     <Container>
       <Value>{(isArray(result) ? result[0].value : result.value) || 0}</Value>
       <Label>{name}</Label>

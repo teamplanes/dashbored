@@ -499,27 +499,45 @@ module.exports = [
 
 allow you to change the default nivo config use for each nivo component (every component except `number`)
 
-#### **column**
+#### **columns**
 
-Allow you to change the number of column used by the widget. Dashbored is made of 6 columns.
-This is the default column for each widget:
+Allow you to change the number of column used by the widget based on screen's width.
+Dashbored is responsive, it means that the number of columns is based on breaking points.
 
-- number: 1
-- pie: 4
-- bar: 6
-- line : 6
-- scatter : 6
+mobile (1 column): < 737px
+tablet (4 columns): <= 1025px
+desktop (6 columns): > 1025px
 
-#### **row**
+To let you customize the size of the widget you can send an object looking like this:
+
+```js
+{
+  mobile: 1,
+  tablet: 4,
+  desktop: 6
+}
+```
+
+This is the default value for each breakpoints and widgets:
+
+| Tables  | Number | Pie | Bar | Line | Scatter |
+| ------- | :----: | :-: | :-: | :--: | :-----: |
+| mobile  |   1    |  1  |  1  |  1   |    1    |
+| tablet  |   1    |  2  |  2  |  2   |    2    |
+| desktop |   1    |  3  |  6  |  6   |    6    |
+
+#### **rows**
 
 Allow you to change the number of rows used by the widget. Dashbored creates as many row as needed. A row is `225px`.
-This is the default column for each widget:
+The behavior is the same as `columns`.
 
-- number: 1
-- pie: 2
-- bar: 2
-- line : 2
-- scatter : 2
+This is the default value for each breakpoints and widgets:
+
+| Tables  | Number | Pie | Bar | Line | Scatter |
+| ------- | :----: | :-: | :-: | :--: | :-----: |
+| mobile  |   1    |  3  |  4  |  4   |    4    |
+| tablet  |   1    |  2  |  3  |  3   |    3    |
+| desktop |   1    |  2  |  2  |  2   |    2    |
 
 #### **shortLabel**
 

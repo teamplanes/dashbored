@@ -25,6 +25,7 @@
     "react-dom": "^16.8.3",
     "react-typography": "^0.16.18",
     "styled-components": "^4.1.3",
+    "styled-components-breakpoint": "^2.1.1",
     "styled-reset": "^1.6.9",
     "typography": "^0.16.18",
     "typography-theme-doelger": "^0.16.18"

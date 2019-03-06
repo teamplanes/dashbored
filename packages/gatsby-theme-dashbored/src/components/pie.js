@@ -36,7 +36,11 @@ const Pie = ({ name, result, ...rest }) => {
     ...rest.nivoConfig,
   }
   return (
-    <Block c={rest.column || 4} r={rest.row || 2} ps="stretch">
+    <Block
+      columns={rest.columns || { mobile: 1, tablet: 2, desktop: 3 }}
+      rows={rest.rows || { mobile: 3, tablet: 2, desktop: 2 }}
+      align="center"
+    >
       <Label>{name}</Label>
       {result.length === 0 ? (
         <Container>

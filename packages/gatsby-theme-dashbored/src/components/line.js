@@ -46,7 +46,10 @@ const Line = ({ result, name, ...rest }) => {
     ...rest.nivoConfig,
   }
   return (
-    <Block c={rest.column || 6} r={rest.row || 2} ps="stretch">
+    <Block
+      columns={rest.columns || { mobile: 1, tablet: 2, desktop: 6 }}
+      rows={rest.rows || { mobile: 4, tablet: 3, desktop: 2 }}
+    >
       <Label>{name}</Label>
       <ResponsiveLine {...props} />
     </Block>

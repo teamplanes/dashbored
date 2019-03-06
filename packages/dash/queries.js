@@ -35,13 +35,13 @@ module.exports = [
       {
         name: 'Number of unicorns in the world',
         type: 'number',
-        column: 2,
+        columns: { mobile: 1, tablet: 1, desktop: 2 },
         query: () => [{ value: 42 }],
       },
       {
         name: 'Average lifespan of each species',
         type: 'bar',
-        column: 3,
+        columns: { mobile: 1, tablet: 2, desktop: 3 },
         nivoConfig: {
           margin: {
             top: 50,
@@ -77,7 +77,7 @@ module.exports = [
       {
         name: '% of territory by species',
         type: 'pie',
-        column: 3,
+        columns: { mobile: 1, tablet: 2, desktop: 3 },
         nivoConfig: { innerRadius: 0 },
         query: () => [
           { id: 'gingercorn', label: 'Gingercorn', value: 23 },
@@ -254,7 +254,7 @@ module.exports = [
       {
         name: 'Nb of earthquakes of magnitude > 6',
         type: 'number',
-        column: 2,
+        columns: { mobile: 1, tablet: 2, desktop: 2 },
         query: () =>
           earth('minmagnitude=6').then(json => ({
             value: json.features.length,
@@ -263,8 +263,8 @@ module.exports = [
       {
         name: 'Nb of earthquakes by magnitude',
         type: 'bar',
-        column: 4,
-        row: 3,
+        columns: { mobile: 1, tablet: 4, desktop: 4 },
+        rows: { mobile: 3, tablet: 3, desktop: 2 },
         nivoConfig: {
           colors: 'set3',
           margin: {
@@ -302,7 +302,7 @@ module.exports = [
       {
         name: 'Nb earthquakes by magnitude > 4',
         type: 'pie',
-        column: 2,
+        columns: { mobile: 1, tablet: 2, desktop: 2 },
         nivoConfig: {
           colors: 'set3',
           innerRadius: 0.5,
