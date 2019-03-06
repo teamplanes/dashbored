@@ -1,8 +1,8 @@
-# Dashbored 😴
+# Dashbored
 
-Dashbored is a Gasby plugin that creates __boring__* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
+Dashbored is a Gasby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
 
-__\* Static.__
+**\* Static.**
 
 - Built on Gatsby, so use any other plugins
 - It's static, run `gatsby build` to refetch the data and build a new version of the `dashbored`, means its super fast.
@@ -10,7 +10,7 @@ __\* Static.__
 - Powerful and beautiful data visualisation using [Nivo](https://nivo.rocks/).
 - Building in configuration and simple queries means anyone who knows SQL can contribute to your `dashbored`.
 
-[View the demo](http://localhost:8000)
+[View the demo](https://dashbored-demo-2qu4jagp4.now.sh/)
 
 ## Install
 
@@ -30,6 +30,7 @@ yarn add gatsby-theme-dashbored
 ## Getting Started
 
 #### Step 1.
+
 In your gatsby project, edit the `gatsby-config.js` and add the dashbored's theme:
 
 ```js
@@ -46,6 +47,7 @@ In your gatsby project, edit the `gatsby-config.js` and add the dashbored's them
 ```
 
 #### Step 2.
+
 Then create the file `queries.js` at the root of your project:
 
 ```js
@@ -71,28 +73,29 @@ module.exports = [
 ]
 ```
 
-__Your first Dashbored is ready to go!__
+**Your first Dashbored is ready to go!**
 
-__Note:__ For the above example to work you'll need to add `node-fetch` as a dependency in your project:
+**Note:** For the above example to work you'll need to add `node-fetch` as a dependency in your project:
 
 ```shell
 yarn add node-fetch
 ```
 
 #### Step 3.
+
 Add the following script in your `package.json`:
 
 ```json
 // package.json
 {
-  [...],
-  "scripts":{
-    "develop":"gatsby develop"
+  "scripts": {
+    "develop": "gatsby develop"
   }
 }
 ```
 
 #### Step 4.
+
 Now you can launch your dashbored, enter the command below and it should be available at `http://localhost:8000`:
 
 ```shell
@@ -216,7 +219,7 @@ Every widget object should contains this fields:
   - db: knex instance
 - description: query/data of your widget
 
-The `nivoConfig` allows you to customize the library we are using for data visualization nivo, you can find their amazing docs on their [website](https://nivo.rocks/). 
+The `nivoConfig` allows you to customize the library we are using for data visualization nivo, you can find their amazing docs on their [website](https://nivo.rocks/).
 
 Each type of widget has optional fields and expects a specific structure for your query data:
 
@@ -492,7 +495,7 @@ module.exports = [
 
 ### **Generic options**
 
-#### **nivoConfig**
+#### **nivoConfig**
 
 allow you to change the default nivo config use for each nivo component (every component except `number`)
 
