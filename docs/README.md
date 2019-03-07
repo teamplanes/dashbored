@@ -31,7 +31,7 @@ yarn add gatsby-theme-dashbored
 
 #### Step 1.
 
-In your gatsby project, edit the `gatsby-config.js` and add the dashbored's theme:
+If you haven’t got a gatsby-config.js file already, create an empty one and add the dashbored's theme:
 
 ```js
 // gatsby-config.js
@@ -40,7 +40,7 @@ In your gatsby project, edit the `gatsby-config.js` and add the dashbored's them
   __experimentalThemes: [
     {
       resolve: 'gatsby-theme-dashbored',
-      options: { queryfile: './queries.js' },
+      options: { queryFile: './queries.js' },
     },
   ],
 }
@@ -159,7 +159,7 @@ If you are not using an SQL database or simply prefer to handle the connection o
 }
 ```
 
-## The shape of the queryfile
+## The shape of the queryFile
 
 ---
 

@@ -7,7 +7,7 @@ module.exports = {
   __experimentalThemes: [
     {
       resolve: 'gatsby-theme-dashbored',
-      options: { queryfile: './queries.js' },
+      options: { queryFile: './queries.js' },
     },
   ],
 }

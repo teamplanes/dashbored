@@ -24,7 +24,7 @@ const {
 require('node-fetch')
 
 exports.createPages = async ({ actions: { createPage } }, config) => {
-  const queries = require(path.resolve(config.queryfile))
+  const queries = require(path.resolve(config.queryFile))
   const db = config.knexConfig ? knex(config.knexConfig) : null
 
   const fetchQuery = async node => {
