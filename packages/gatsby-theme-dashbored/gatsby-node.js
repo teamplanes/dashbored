@@ -1,6 +1,8 @@
+const fs = require('fs')
 const path = require('path')
 const knex = require('knex')
 const dayjs = require('dayjs')
+const mkdirp = require('mkdirp')
 const {
   flowRight,
   pick,
@@ -59,4 +61,39 @@ exports.createPages = async ({ actions: { createPage } }, config) => {
       })
     })
   return await Promise.all(createPP(map(fetchQueries, queries)))
+}
+
+/**
+ * When shipping NPM modules, they typically need to be either
+ * pre-compiled or the user needs to add bundler config to process the
+ * files. Gatsby lets us ship the bundler config *with* the theme, so
+ * we never need a lib-side build step.  Since we dont pre-compile the
+ * theme, this is how we let webpack know how to process files.
+ */
+exports.onCreateWebpackConfig = ({ stage, loaders, plugins, actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          include: path.dirname(require.resolve('gatsby-theme-dashbored')),
+          use: [loaders.js()],
+        },
+      ],
+    },
+  })
+}
+
+// make sure src/pages exists for the filesystem source or it will error
+exports.onPreBootstrap = ({ store }) => {
+  const { program } = store.getState()
+  const dir = `${program.directory}/src/pages`
+
+  if (!fs.existsSync(dir)) {
+    mkdirp.sync(dir)
+  }
+}
+
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPreset({ name: '@babel/preset-react' })
 }
