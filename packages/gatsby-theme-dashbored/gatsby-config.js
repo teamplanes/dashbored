@@ -1,9 +1,7 @@
-const path = require('path')
-
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Theme Blog Core',
-    author: 'Chris Biscardi',
-    description: 'A blog core theme that people can build on top of',
+    title: 'Dashbored',
+    author: 'planes',
+    description: 'A minimalist boring dashboard to quickly show revelant data',
   },
 }

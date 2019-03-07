@@ -9,7 +9,7 @@
     "now-build": "yarn run build"
   },
   "dependencies": {
-    "gatsby": "^2.0.111",
+    "gatsby": "^2.1.24",
     "gatsby-theme-dashbored": "*",
     "lodash": "^4.17.11",
     "node-fetch": "^2.3.0"

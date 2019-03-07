@@ -3,11 +3,21 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "theme",
+    "gatsby-theme",
+    "dashboard",
+    "SQL",
+    "query",
+    "react",
+    "nivo"
+  ],
   "scripts": {
     "develop": "gatsby develop"
   },
   "devDependencies": {
-    "gatsby": "2.0.111"
+    "gatsby": "2.1.24"
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
@@ -15,21 +25,19 @@
     "@nivo/line": "^0.52.1",
     "@nivo/pie": "^0.52.1",
     "@nivo/scatterplot": "^0.52.1",
-    "dayjs": "^1.8.8",
-    "gatsby-plugin-typography": "^2.2.7",
+    "dayjs": "^1.8.9",
+    "gatsby-plugin-typography": "^2.2.8",
     "graphql": "^14.1.1",
     "knex": "^0.16.3",
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.3.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "react-typography": "^0.16.18",
     "styled-components": "^4.1.3",
     "styled-components-breakpoint": "^2.1.1",
-    "styled-reset": "^1.6.9",
-    "typography": "^0.16.18",
-    "typography-theme-doelger": "^0.16.18"
+    "styled-reset": "^2.0.0"
   }
 }
