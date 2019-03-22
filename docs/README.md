@@ -35,8 +35,12 @@ If you haven’t got a gatsby-config.js file already, create an empty one and ad
 
 ```js
 // gatsby-config.js
-{
-  [...],
+module.exports = {
+  siteMetadata: {
+    title: `Gatsby`,
+    siteUrl: `https://www.gatsbyjs.org`,
+    description: `Blazing fast modern site generator for React`,
+  },
   __experimentalThemes: [
     {
       resolve: 'gatsby-theme-dashbored',
