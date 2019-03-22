@@ -1,4 +1,12 @@
-# Dashbored
+<p align="center">
+  <h1>Dashbored</h1>
+</p>
+
+![Version][version]
+![Download][download]
+![Bundle size][size]
+![Top Language][language]
+![License][license]
 
 Dashbored is a Gasby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
 
@@ -589,3 +597,11 @@ To run scripts in a workspace, use the `yarn workspace` command.
 ```shell
 yarn workspace dash develop
 ```
+
+<!-- badges -->
+
+[version]: https://img.shields.io/npm/v/gatsby-theme-dashbored/latest.svg?style=flat-square
+[download]: https://img.shields.io/npm/dt/gatsby-theme-dashbored.svg?style=flat-square
+[language]: https://img.shields.io/github/languages/top/teamplanes/dashbored.svg?style=flat-square
+[size]: https://img.shields.io/bundlephobia/min/gatsby-theme-dashbored.svg?style=flat-square
+[license]: https://img.shields.io/github/license/teamplanes/dashbored.svg?style=flat-square
