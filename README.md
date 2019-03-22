@@ -312,8 +312,7 @@ Structure of the data expected:
 ```js
 const data = [
   {
-    id: string | number,
-    label: string | number,
+    index: string | number,
     value: number,
   },
 ]

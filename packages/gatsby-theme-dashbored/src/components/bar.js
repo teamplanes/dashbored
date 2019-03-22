@@ -68,7 +68,7 @@ const Bar = ({ name, result, ...rest }) => {
     indexBy: 'index',
     padding: 0.3,
     colors: 'nivo',
-    colorBy: 'id',
+    colorBy: 'index',
     axisBottom: {
       format: v => (rest.shortLabel ? v.substring(0, rest.shortLabel) : v),
     },
