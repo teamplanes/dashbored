@@ -40,7 +40,7 @@ If you haven’t got a gatsby-config.js file already, create an empty one and ad
   __experimentalThemes: [
     {
       resolve: 'gatsby-theme-dashbored',
-      options: { queries: './queries.js' },
+      options: { queryFile: './queries.js' },
     },
   ],
 }
@@ -312,7 +312,8 @@ Structure of the data expected:
 ```js
 const data = [
   {
-    index: string | number,
+    id: string | number,
+    label: string | number,
     value: number,
   },
 ]
