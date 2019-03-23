@@ -8,7 +8,7 @@
 ![Top Language][language]
 ![License][license]
 
-Dashbored is a Gasby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
+Dashbored is a Gatsby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
 
 **\* Static.**
 
