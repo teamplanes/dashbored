@@ -8,9 +8,7 @@
 ![Top Language][language]
 ![License][license]
 
-Dashbored is a Gatsby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
-
-![Preview](/screenshot.png)
+Dashbored is a Gasby plugin that creates **boring**\* data dashboards using simple configuration. It's quick and painless and allows you to focus on the data fetching and queries rather than UI.
 
 **\* Static.**
 
@@ -41,7 +39,7 @@ yarn add gatsby-theme-dashbored
 
 #### Step 1.
 
-If you haven’t got a gatsby-config.js file already, create an empty one and add the dashbored's theme:
+If you havenâ€™t got a gatsby-config.js file already, create an empty one and add the dashbored's theme:
 
 ```js
 // gatsby-config.js
